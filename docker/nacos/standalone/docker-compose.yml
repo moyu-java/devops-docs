@@ -1,0 +1,19 @@
+version: "3"
+services:
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: nacos
+    volumes:
+      - ./logs:/home/nacos/logs
+      - ./data:/home/nacos/data
+      - ./config/application.properties:/home/nacos/conf/application.properties
+    environment:
+      - "MODE=standalone"
+      - "NACOS_SERVER_PORT=8848"
+      - "JVM_XMS=2g"
+      - "JVM_XMX=2g"
+      - "JVM_XMN=1g"
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+    restart: always

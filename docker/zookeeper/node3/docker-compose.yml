@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  zookeeper:
+    image: zookeeper:3.7
+    container_name: zookeeper
+    hostname: zookeeper
+    restart: always
+    network_mode: "host"
+    privileged: true
+    volumes:
+      - ./conf:/conf
+      - ./data:/data
+      - ./datalog:/datalog
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=172.16.211.154:2888:3888;2181 server.2=172.16.211.155:2888:3888;2181 server.3=172.16.211.156:2888:3888;2181
+      SERVER_JVMFLAGS: -Djava.security.auth.login.config=/conf/jaas.conf
+      ZOO_STANDALONE_ENABLED: "false"
+      ZOO_ADMINSERVER_ENABLED: "false"
+      ZOO_4LW_COMMANDS_WHITELIST: srvr
+      ZOO_LOG4J_PROP: INFO,ROLLINGFILE

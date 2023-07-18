@@ -1,0 +1,14 @@
+version: "3"
+services:
+  seata:
+    image: seataio/seata-server:1.3.0
+    hostname: seata
+    container_name: seata
+    volumes:
+      - ./config:/root/seata-config
+    environment:
+      - SEATA_PORT=8091
+      - STORE_MODE=nacos
+    ports:
+      - "14010:8091"
+    restart: always

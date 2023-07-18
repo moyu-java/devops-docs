@@ -1,0 +1,13 @@
+version: '2.2'
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.2
+    container_name: kibana
+    hostname: kibana
+    restart: always
+    volumes:
+      - ./config:/usr/share/kibana/config
+      - ./logs:/usr/share/kibana/logs
+      - ./data:/usr/share/kibana/data
+    ports:
+      - 5601:5601

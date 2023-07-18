@@ -1,0 +1,45 @@
+version: '2.2'
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    container_name: es
+    hostname: es
+    restart: always
+    environment:
+      - node-name=es
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./es/config:/usr/share/elasticsearch/config
+      - ./es/logs:/usr/share/elasticsearch/logs
+      - ./es/data:/usr/share/elasticsearch/data
+      - ./es/plugins:/usr/share/elasticsearch/plugins
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.2
+    container_name: kibana
+    hostname: kibana
+    restart: always
+    environment:
+      ELASTICSEARCH_URL: http://es:9200
+      ELASTICSEARCH_HOSTS: '["http://es:9200"]'
+    volumes:
+      - ./kibana/config:/usr/share/kibana/config
+      - ./kibana/logs:/usr/share/kibana/logs
+      - ./kibana/data:/usr/share/kibana/data
+    ports:
+      - 5601:5601
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge

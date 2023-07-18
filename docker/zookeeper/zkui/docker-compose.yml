@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  zkui:
+    image: harbor.shiduai.com/library/zkui:latest
+    container_name: zkui
+    hostname: zkui
+    restart: always
+    privileged: true
+    ports:
+      - 9090:9090
+    volumes:
+      - ./conf/config.cfg:/config.cfg

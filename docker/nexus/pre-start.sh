@@ -1,0 +1,1 @@
+mkdir data && chown -R 200 data
