@@ -18,6 +18,7 @@
 * [Prometheus](./docker/prometheus)
 * [ElasticSearch](./docker/elasticstack/elasticsearch)
 * [nexus](./docker/nexus)
+* [apisix](./docker/apisix)
 
 ## 应用
 
