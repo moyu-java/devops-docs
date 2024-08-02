@@ -2,7 +2,7 @@
 
 ## 下载 Redis
 
-在[Redis 官网](https://download.redis.io)下载 `Redis Stable` 版本文件 `redis-stable.tar.gz`。
+在[github redis Release](https://github.com/redis/redis/releases)下载 `Redis Stable` 版本文件 `redis-7.4.0.tar.gz`。
 
 然后将其解压，解压后复制 `redis.conf` 文件作为 Docker 安装时的 Redis 配置文件。
 
@@ -43,9 +43,7 @@ redis 配置需要修改部分配置项。修改内容如下：
 # bind 127.0.0.1 -::1
 
 # 设置 RDB 数据持久化规则
-save 3600 1
-save 300 100
-save 60 10000
+save 3600 1 300 100 60 10000
 
 # 设置密码
 requirepass your_password
