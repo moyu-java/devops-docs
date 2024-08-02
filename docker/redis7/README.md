@@ -2,7 +2,7 @@
 
 ## 下载 Redis
 
-在[Redis 官网](https://redis.io/download)下载 `Redis 6.2 Stable` 版本文件 `redis-6.2.6.tar.gz`。
+在[Redis 官网](https://download.redis.io)下载 `Redis Stable` 版本文件 `redis-stable.tar.gz`。
 
 然后将其解压，解压后复制 `redis.conf` 文件作为 Docker 安装时的 Redis 配置文件。
 
@@ -16,19 +16,18 @@
 version: '3'
 services:
   redis:
-    image: redis:6
+    image: redis:7
     container_name: redis
     hostname: redis
-    privileged: true
     restart: always
     environment:
       TZ: Asia/Shanghai
     ports:
-      - 6379:6379
+      - "6379:6379"
     volumes:
-      - ./redis.conf:/etc/redis/redis.conf
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
       - ./data:/data
-    command: [ "redis-server", "/etc/redis/redis.conf"]
+    command: [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 ```
 
 复制 `redis.conf` 文件到 `docker-compose.yml` 同级目录下，并按照自己的需求修改配置即可。具体的配置项与常规安装一致。
