@@ -1,4 +1,3 @@
-version: '3'
 services:
   mysql:
     image: mysql:8
@@ -10,5 +9,5 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql.cnf:/etc/mysql/my.cnf
+      - ./mysql.cnf:/etc/mysql/my.cnf:ro
       - ./data:/var/lib/mysql
